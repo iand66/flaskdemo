@@ -1,8 +1,17 @@
 from flask import Flask, render_template
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = "doStuffHere"
+
+class NameForm(FlaskForm):
+    name = StringField("Enter Your Name", validators=[DataRequired()])
+    submit = SubmitField("Submit")
 
 @app.route('/')
+@app.route('/home')
 def home():
     return render_template('home.html')
 
@@ -15,6 +24,12 @@ def demo():
     data = "This is <strong>Bold</strong> text"
     pizza = ['Pepperoni', 'Cheese', 'Mushroom']
     return render_template('demo.html', data=data, pizza=pizza)
+
+app.route('/username', methods=['GET','POST'])
+def username():
+    name = None
+    form = NameForm()
+    return render_template('name.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

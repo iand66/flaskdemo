@@ -3,5 +3,25 @@
 {% block title %}Username{% endblock title %}
 
 {% block body %}
-    <h1>What is Your Name?</h1>
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }} {{ name }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+    {% if name %}
+        <h1>Hello {{ name }}</h1>
+    {% else %}
+        <h3>What is Your Name?</h3>
+        <br/>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+            <br/>
+            {{ form.submit(class="btn btn-secondary") }}
+        </form>
+    {% endif %}
+    
 {% endblock body %}

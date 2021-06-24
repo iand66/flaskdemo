@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Registration{% endblock title %}
+
+{% block body %}
+    <div class="shadow p-3 mb-5 bg-body rounded">
+    {% if name %}
+        <h3>Hello {{ name }}</h3>
+        <table class="table table-hover table-striped table-borded">
+            {% for user in users %}
+            <tr>
+                <td>
+                    {{user.id}} - {{ user.name }} - {{ user.email }} - {{ user.color }}<br />
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h3>Register</h3>
+        <br/>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+            {{ form.color.label(class="form-label") }}
+            {{ form.color(class="form-select") }}
+            <br />
+            {{ form.submit(class="btn btn-secondary") }}
+        </form>
+        <br/>
+        <table class="table table-hover table-striped table-borded">
+            {% for user in users %}
+            <tr>
+                <td>
+                    {{user.id}} - <a href="{{ url_for('update', id=user.id)}}"> {{ user.name }} </a> - {{ user.email }} - {{ user.color}} -
+                    <a href="{{ url_for('delete', id=user.id)}}">Delete</a>
+                    <br/>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    </div>
+{% endblock body %}

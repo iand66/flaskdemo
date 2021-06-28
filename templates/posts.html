@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog Posts{% endblock title %}
+
+{% block body %}
+    <h3>Blog Posts</h3>
+    <br/>
+        {% for post in posts %}
+        <div class="shadow p-3 mb-5 bg-body rounded"> 
+            <h4><a href="{{ url_for('post', id=post.id) }}">{{ post.title }}</a></h4>
+            <small>{{ post.author }}<br/>
+            {{ post.date_posted }}<br/></small>
+            {{ post.content }}<br/><br/>
+            <a href="{{ url_for('post', id=post.id) }}" class="btn btn-outline-secondary">View</a>
+        </div>
+        {% endfor %}
+{% endblock body %}

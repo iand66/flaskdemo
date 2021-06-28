@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <h3>Hello {{ name }}</h3>
+    {% if success %}
+        <h4>Welcome to my website</h4>
+    {% else %}
+        <h4>Invalid Password</h4>
+    {% endif %}
+    
+{% endblock body %}

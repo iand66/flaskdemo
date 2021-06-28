@@ -3,6 +3,18 @@
 {% block title %}Registration{% endblock title %}
 
 {% block body %}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% endif %}
+        {% endwith %}
+    </div>
+
     <div class="shadow p-3 mb-5 bg-body rounded">
     {% if name %}
         <h3>Hello {{ name }}</h3>
@@ -10,7 +22,7 @@
             {% for user in users %}
             <tr>
                 <td>
-                    {{user.id}} - {{ user.name }} - {{ user.email }} - {{ user.color }}<br />
+                    {{user.id}} - {{ user.name }} - {{ user.email }} - {{ user.color }} <br />
                 </td>
             </tr>
             {% endfor %}
@@ -26,7 +38,11 @@
             {{ form.email(class="form-control") }}
             {{ form.color.label(class="form-label") }}
             {{ form.color(class="form-select") }}
-            <br />
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
+            {{ form.confirm.label(class="form-label") }}
+            {{ form.confirm(class="form-control") }}
+            <br/>
             {{ form.submit(class="btn btn-secondary") }}
         </form>
         <br/>
@@ -34,8 +50,7 @@
             {% for user in users %}
             <tr>
                 <td>
-                    {{user.id}} - <a href="{{ url_for('update', id=user.id)}}"> {{ user.name }} </a> - {{ user.email }} - {{ user.color}} -
-                    <a href="{{ url_for('delete', id=user.id)}}">Delete</a>
+                    {{user.id}} - <a href="{{ url_for('update', id=user.id)}}"> {{ user.name }} </a> - {{ user.email }} - {{ user.color}} - {{ user.pass_hash }} - <a href="{{ url_for('delete', id=user.id)}}">Delete</a>
                     <br/>
                 </td>
             </tr>

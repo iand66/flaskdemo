@@ -15,17 +15,6 @@
     {% include 'navbar.html' %}
 
     <div class="container-fluid">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <p>{{message}}</p>
-                    {% endfor %}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                {% endif %}
-            {% endwith %}
-        </div>        
-
         {% block body %}
         
         {% endblock body %}

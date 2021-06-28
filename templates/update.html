@@ -2,7 +2,18 @@
 
 {% block title %}Update User{% endblock title %}
 
-{% block body %}    
+{% block body %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% endif %}
+        {% endwith %}
+    </div>    
+    
     <div class="shadow p-3 mb-5 bg-body rounded">
     {% if name %}
         <h3>Update User</h3>

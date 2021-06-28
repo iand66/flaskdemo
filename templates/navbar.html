@@ -11,13 +11,19 @@
                     <a class="nav-link active" aria-current="page" href={{ url_for('home') }}>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href={{ url_for('user', name='John' ) }}>User</a>
+                    <a class="nav-link" href={{ url_for('login') }}>Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href={{ url_for('demo') }}>Demo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href={{ url_for('username') }}>Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={{ url_for('add_post') }}>Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={{ url_for('posts') }}>Read</a>
                 </li>
             </ul>
         </div>

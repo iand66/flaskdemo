@@ -3,7 +3,15 @@
 {% block title %}User{% endblock title %}
 
 {% block body %}
-    <h1>Hello {{name|capitalize}}</h1>
+    <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
+            <br/>
+            {{ form.submit(class="btn btn-secondary") }}
+    </form>
 {% endblock body %}
 
 
